@@ -11,16 +11,16 @@ export class CountriesService {
     this.getAllCountries();
   }
   private http = inject(HttpClient);
-  private apiUrl = 'https://restcountries.com/v3.1'
+  private apiUrl = 'https://restcountries.com/v2'
 
   private _allCountries: Country[] = [];
   get allCountries(){ return [...this._allCountries] }
 
   getAllCountries(){
-    this.http.get<CountryRes[]>(`${this.apiUrl}/all`)
+    this.http.get<CountryRes[]>(`${this.apiUrl}/all?fields=name,flag`)
       .subscribe(res => this._allCountries = res.map(c => ({
-        name: c.name.common,
-        flag: c.flags.svg,
+        name: c.name,
+        flag: c.flag,
       })))
   }
 
