@@ -3,7 +3,7 @@ import { Review } from '../interfaces/Review';
 import { Observable, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../auth/services/auth.service';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { ReviewBody } from '../interfaces/ReviewBody';
 import { ReviewCreated } from '../interfaces/ReviewCreated';
 
@@ -15,7 +15,7 @@ export class ReviewsService {
   private _reviews: Review[] = [];
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = environtment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   get reviews() { return [...this._reviews] }
 

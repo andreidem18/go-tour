@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { TourItem } from '../interfaces/TourItem';
 import { HighlightedTour } from '../interfaces/HighlightedTour';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class ToursService {
 
   private http = inject(HttpClient)
 
-  private apiUrl = environtment.apiUrl;
+  private apiUrl = environment.apiUrl;
 
   private _toursList: TourItem[] = [];
 

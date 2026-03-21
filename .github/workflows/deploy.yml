@@ -1,0 +1,50 @@
+name: Deploy Angular to S3 + CloudFront
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./user
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build
+        env:
+          API_URL: ${{ vars.API_URL }}
+          MAPBOX_TOKEN: ${{ vars.MAPBOX_TOKEN }}
+
+      # AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::068514513330:role/go-tour-role
+          aws-region: us-east-1
+
+      - run: aws s3 sync ./dist s3://go-tour-user --delete
+
+      - run: |
+          aws cloudfront create-invalidation \
+            --distribution-id EG0TGI924YJ7 \
+            --paths "/*"

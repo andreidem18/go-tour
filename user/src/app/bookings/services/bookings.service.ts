@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { Booking } from '../interfaces/Booking';
 import { Observable, switchMap, tap } from 'rxjs';
 import { NewBooking } from '../interfaces/NewBooking';
@@ -14,7 +14,7 @@ export class BookingsService {
 
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private apiUrl = environtment.apiUrl;
+  private apiUrl = environment.apiUrl;
   private _bookings: Booking[] = [];
 
   get bookings() { return this._bookings }

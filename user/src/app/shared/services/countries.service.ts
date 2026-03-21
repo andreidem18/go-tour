@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Country, CountryRes } from '../interfaces';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class CountriesService {
   }
   private http = inject(HttpClient);
   private countriesApiUrl = 'https://restcountries.com/v2';
-  private toursApiUrl = environtment.apiUrl;
+  private toursApiUrl = environment.apiUrl;
 
   private _allCountries: Country[] = [];
   get allCountries() {

@@ -1,6 +1,6 @@
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { Tour } from '../interfaces/Tour';
 import { generateMap } from 'src/app/shared/helpers/generateMap';
 import { Review } from '../interfaces/Review';
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class TourDetailService {
 
   private http = inject(HttpClient);
-  private apiUrl = environtment.apiUrl;
+  private apiUrl = environment.apiUrl;
   private _tour: Tour | null = null;
   private _mapImg: string = "";
 

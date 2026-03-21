@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { User } from 'src/app/shared/interfaces';
-import { environtment } from 'src/environments/environments';
+import { environment } from 'src/environments/environment';
 import { LoginRes } from '../interfaces/LoginRes';
 import { Credentials } from '../interfaces/Credentials';
 import { AuthStatus } from '../interfaces/authStatus.enum';
@@ -15,7 +15,7 @@ import { getFormData } from 'src/app/shared/helpers/getFormData';
 export class AuthService {
 
   private http = inject(HttpClient);
-  private apiUrl = environtment.apiUrl;
+  private apiUrl = environment.apiUrl;
   private _loggedUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.pending);
 
