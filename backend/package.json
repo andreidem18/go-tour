@@ -22,9 +22,12 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0",
-    "sequelize-cli": "^6.5.2"
+    "sequelize-cli": "^6.5.2",
+    "serverless-http": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "serverless": "^3.40.0",
+    "serverless-dotenv-plugin": "^6.0.0"
   }
 }

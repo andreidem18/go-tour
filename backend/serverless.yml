@@ -1,0 +1,29 @@
+service: tours-api
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-2
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+    CLOUDINARY_CLOUD_NAME: ${env:DATABASE_URL}
+    CLOUDINARY_API_KEY: ${env:DATABASE_URL}
+    CLOUDINARY_API_SECRET: ${env:DATABASE_URL}
+    TOKEN_SECRET: ${env:DATABASE_URL}
+    PORT: ${env:DATABASE_URL}
+
+functions:
+  app:
+    handler: src/lambda.handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+      - httpApi:
+          path: /
+          method: ANY
+
+plugins:
+  - serverless-dotenv-plugin
