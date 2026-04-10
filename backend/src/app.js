@@ -4,8 +4,11 @@ const cors = require('cors');
 require('dotenv').config();
 const router = require('./routes');
 const errorHandler = require('./utils/errorHandler');
+const { httpLogger, userLog } = require('./logger');
 
 const app = express();
+
+app.use(httpLogger);
 
 // middlewares antes de las rutas
 app.use(express.json());
@@ -14,8 +17,9 @@ app.use(cors());
 
 // rutas
 app.use(router);
-app.get("/", (req, res) => {
-    return res.send("Welcome to express!")
+
+app.get("/", (_req, res) => {
+    return res.send("Welcome to Tours API!");
 })
 
 // middlewares después de las rutas
