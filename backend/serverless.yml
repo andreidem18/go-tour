@@ -8,11 +8,11 @@ provider:
   region: us-east-2
   environment:
     DATABASE_URL: ${env:DATABASE_URL}
-    CLOUDINARY_CLOUD_NAME: ${env:DATABASE_URL}
-    CLOUDINARY_API_KEY: ${env:DATABASE_URL}
-    CLOUDINARY_API_SECRET: ${env:DATABASE_URL}
-    TOKEN_SECRET: ${env:DATABASE_URL}
-    PORT: ${env:DATABASE_URL}
+    CLOUDINARY_CLOUD_NAME: ${env:CLOUDINARY_CLOUD_NAME}
+    CLOUDINARY_API_KEY: ${env:CLOUDINARY_API_KEY}
+    CLOUDINARY_API_SECRET: ${env:CLOUDINARY_API_SECRET}
+    TOKEN_SECRET: ${env:TOKEN_SECRET}
+    NODE_ENV: ${env:NODE_ENV}
 
 functions:
   app:
@@ -24,6 +24,3 @@ functions:
       - httpApi:
           path: /
           method: ANY
-
-plugins:
-  - serverless-dotenv-plugin

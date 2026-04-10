@@ -1,4 +1,4 @@
-name: Deploy Angular to S3 + CloudFront
+name: Deploy Tours App
 
 on:
   push:
@@ -89,3 +89,39 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id ES94Y42I2R8PL \
             --paths "/*"
+
+
+  deploy-backend:
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::068514513330:role/go-tour-role
+          aws-region: us-east-1
+
+      - name: Deploy with Serverless
+        run: npx serverless deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          NODE_ENV: production
