@@ -30,3 +30,9 @@ Documentation: https://documenter.getpostman.com/view/17877993/2s9YXe957y
 2. Set the environment variables of the `.env.example`
 3. Configure the environment variables with `npm run envs`
 4. Run the project with `ng serve`
+
+## Arquitecture and Docs
+
+* [User Application Architecture](user\docs\arquitecture.md)
+* [Admin Application Architecture](admin\docs\arquitecture.md)
+* [Backend Architecture](backend\docs\arquitecture.md)
