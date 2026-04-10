@@ -10,6 +10,9 @@ const db = {};
 let sequelize; // 👈 singleton
 
 const getSequelize = () => {
+  console.log("DB URL exists:", !!process.env.DATABASE_URL);
+  console.log("DB URL length:", process.env.DATABASE_URL?.length);
+  console.log("Debug")
   if (!sequelize) {
     sequelize = new Sequelize(process.env.DATABASE_URL, {
       dialect: "postgres",

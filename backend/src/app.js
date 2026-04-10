@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const router = require('./routes');
 const errorHandler = require('./utils/errorHandler');
-const { httpLogger, userLog } = require('./logger');
+const { httpLogger } = require('./logger');
 
 const app = express();
 

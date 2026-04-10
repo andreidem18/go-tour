@@ -119,9 +119,9 @@ jobs:
       - name: Deploy with Serverless
         run: npx serverless deploy
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
+          DATABASE_URL: ${{ vars.DATABASE_URL }}
+          CLOUDINARY_CLOUD_NAME: ${{ vars.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ vars.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ vars.CLOUDINARY_API_SECRET }}
+          TOKEN_SECRET: ${{ vars.TOKEN_SECRET }}
           NODE_ENV: production
